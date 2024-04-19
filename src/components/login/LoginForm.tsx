@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Input, Button, Stack } from '@mui/joy';
 
-import { createUserEmailPassword } from '../../services/firebase/firebaseAuthService';
+import { createUserEmailPassword, signInEmailPassword } from '../../services/firebase/firebaseAuthService';
 
 function LoginForm() {
   const [signUpMode, setSignUpMode] = useState(false);
@@ -11,7 +11,7 @@ function LoginForm() {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
   const submit = () => {
-    // TODO: validate with error messages
+    // TODO: validate better and with error messages
     if (!email || !password) {
       return;
     }
@@ -40,12 +40,14 @@ function LoginForm() {
   return (
     <Stack
       direction="column"
-      gap={1}
+      alignContent="center"
+      justifyContent="center"
+      gap={2}
       sx={{
         textAlign: 'center',
+        height: '100%',
       }}
     >
-      <h1>{signUpMode ? 'Create Account' : 'Login'}</h1>
       <Input
         size="lg"
         variant="outlined"
@@ -76,7 +78,7 @@ function LoginForm() {
           size="lg"
           variant="solid"
           color="primary"
-          disabled={submitButtonEnabled}
+          disabled={!submitButtonEnabled}
           onClick={() => submit()}
           sx={{
             borderRadius: 40,

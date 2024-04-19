@@ -1,4 +1,4 @@
-import { Stack, Sheet } from '@mui/joy';
+import { Stack, Sheet, Typography } from '@mui/joy';
 
 import LoginForm from './LoginForm';
 
@@ -14,12 +14,21 @@ function Login() {
         background: theme.vars.palette.gradient.mainChannel,
       })}
     >
+      <Typography
+        level="h1"
+        textColor="common.white"
+        sx={{
+          marginBottom: 2,
+        }}
+      >
+        Welcome
+      </Typography>
       <Sheet
         sx={{
           borderRadius: 8,
-          p: 2,
+          p: 4,
           width: '100%',
-          height: '100%',
+          maxWidth: 400,
         }}
       >
         <LoginForm />
