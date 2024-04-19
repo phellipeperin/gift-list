@@ -13,12 +13,12 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <LoginRoute />,
-    errorElement: <ErrorRoute />
+    errorElement: <ErrorRoute />,
   },
   {
     path: '/list',
     element: <GiftListRoute />,
-    errorElement: <ErrorRoute />
+    errorElement: <ErrorRoute />,
   },
   {
     path: '/list/:id',

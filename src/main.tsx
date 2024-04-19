@@ -12,6 +12,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <CssVarsProvider theme={theme}>
       <CssBaseline />
       <RouterProvider router={router} />
-    </CssVarsProvider>    
+    </CssVarsProvider>
   </React.StrictMode>,
 );
