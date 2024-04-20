@@ -1,4 +1,4 @@
-import GiftList from '../model/GiftList';
+import GiftList from '../models/GiftList';
 import { loadGiftList } from './giftListService';
 
 export async function giftListRouteLoader({ params }: any): Promise<GiftList> {

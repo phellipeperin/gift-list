@@ -1,5 +1,5 @@
 import { useLoaderData } from 'react-router-dom';
-import GiftList from '../model/GiftList';
+import GiftList from '../models/GiftList';
 
 function GiftListItemRoute() {
   const list: GiftList = useLoaderData() as GiftList;

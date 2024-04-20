@@ -1,4 +1,4 @@
-import GiftList from '../model/GiftList';
+import GiftList from '../models/GiftList';
 
 export async function loadGiftList(id: string): Promise<GiftList> {
   console.log(id);
