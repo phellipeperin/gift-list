@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Input, Button, Stack } from '@mui/joy';
 
+import store from '../../store';
 import { createUserEmailPassword, signInEmailPassword } from '../../services/firebase/firebaseAuthService';
+import { setWarningMessage } from '../../stores/feedbackStore';
 
 function LoginForm() {
   const [signUpMode, setSignUpMode] = useState(false);
