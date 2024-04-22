@@ -16,7 +16,8 @@ const theme = extendTheme({
     light: {
       palette: {
         gradient: {
-          mainChannel: 'linear-gradient(to bottom right, #61D8DE, #7577E6, #CE3AF3)',
+          mainChannel:
+            'linear-gradient(to bottom right, #61D8DE, #7577E6, #CE3AF3)',
         },
       },
     },

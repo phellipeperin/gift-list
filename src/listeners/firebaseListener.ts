@@ -4,14 +4,21 @@ import { auth } from '../firebase';
 import store from '../store';
 import { setUser, clearUser } from '../stores/userStore';
 
-const startListener = () => {
+const startListener = (redirect: any) => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log(user);
-      store.dispatch(setUser({ id: user.uid }));
-      // TODO: redirect somewhere
+      store.dispatch(
+        setUser({
+          id: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        }),
+      );
+      redirect('/list');
     } else {
       store.dispatch(clearUser());
+      redirect('/login');
     }
   });
 };

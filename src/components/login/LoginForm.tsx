@@ -3,8 +3,15 @@ import { Input, Button, Stack } from '@mui/joy';
 
 import store from '../../store';
 import { ValidationResult } from '../../models/Validation';
-import { createUserEmailPassword, signInEmailPassword } from '../../services/firebase/firebaseAuthService';
-import { validateEmail, validatePassword, validatePasswordConfirmation } from '../../services/validation/formValidationsService';
+import {
+  createUserEmailPassword,
+  signInEmailPassword,
+} from '../../services/firebase/firebaseAuthService';
+import {
+  validateEmail,
+  validatePassword,
+  validatePasswordConfirmation,
+} from '../../services/validation/formValidationsService';
 import { setWarningMessage } from '../../stores/feedbackStore';
 
 function LoginForm() {
@@ -24,7 +31,10 @@ function LoginForm() {
       return passwordValidation;
     }
     if (signUpMode) {
-      const confirmationValidation = validatePasswordConfirmation(password, passwordConfirmation);
+      const confirmationValidation = validatePasswordConfirmation(
+        password,
+        passwordConfirmation,
+      );
       if (!confirmationValidation.isValid) {
         return confirmationValidation;
       }

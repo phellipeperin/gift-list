@@ -9,7 +9,7 @@ enum MessageType {
 
 interface State {
   message: string;
-  type: MessageType;  
+  type: MessageType;
 }
 
 const initialState: State = {
