@@ -5,32 +5,25 @@ import {
 
 import store from '../../store';
 import { auth } from '../../firebase';
-import { setSuccessMessage } from '../../stores/feedbackStore';
+import { setSuccessMessage, setWarningMessage } from '../../stores/feedbackStore';
 
 export const createUserEmailPassword = (email: string, password: string) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(() => {
       store.dispatch(setSuccessMessage('Account created successfully!'));
-      // Signed up
-      const user = userCredential.user;
-      // ...
+      // nothing to do, listener is in place
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
+      store.dispatch(setWarningMessage(`Ops! Something went wrong: ${error.code} - ${error.message}`));
     });
 };
 
 export const signInEmailPassword = (email: string, password: string) => {
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
+    .then(() => {
+      // nothing to do, listener is in place
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      store.dispatch(setWarningMessage(`Ops! Something went wrong: ${error.code} - ${error.message}`));
     });
 };
