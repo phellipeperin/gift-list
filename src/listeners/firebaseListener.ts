@@ -18,6 +18,7 @@ const startListener = (redirect: any) => {
       redirect('/list');
     } else {
       store.dispatch(clearUser());
+      // TODO: some pages are public and should not be affected by this redirect!
       redirect('/login');
     }
   });

@@ -1,13 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface State {
-  id: string;
-  email?: string;
-  displayName?: string;
-  photoURL?: string;
-}
+import User from '../models/User';
 
-const initialState: State = {
+const initialState: User = {
   id: '',
 };
 

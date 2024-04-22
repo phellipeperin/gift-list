@@ -1,18 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-enum MessageType {
-  SUCCESS = 'SUCCESS',
-  INFO = 'INFO',
-  WARNING = 'WARNING',
-  ERROR = 'ERROR',
-}
+import FeedbackMessage, { MessageType } from '../models/FeedbackMessage'; 
 
-interface State {
-  message: string;
-  type: MessageType;
-}
-
-const initialState: State = {
+const initialState: FeedbackMessage = {
   message: '',
   type: MessageType.INFO,
 };
@@ -45,7 +35,7 @@ const feedbackSlice = createSlice({
         type: MessageType.ERROR,
       };
     },
-    clear() {
+    clearMessage() {
       return initialState;
     },
   },
@@ -56,6 +46,6 @@ export const {
   setInfoMessage,
   setWarningMessage,
   setErrorMessage,
-  clear,
+  clearMessage,
 } = feedbackSlice.actions;
 export default feedbackSlice.reducer;

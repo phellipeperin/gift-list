@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
+import { Provider } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 
+import store from './store';
 import firebaseListener from './listeners/firebaseListener';
+
+import FeedbackSnackbar from './components/feedback/FeedbackSnackbar';
 
 /*
   This component is used in the root level and contains all the basic globals functionalities for the application:
@@ -22,9 +26,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Provider store={store}>
       <Outlet />
-    </>
+      <FeedbackSnackbar />
+    </Provider>
   );
 }
 

@@ -11,7 +11,6 @@ import GiftListItemEditRoute from './routes/GiftListItemEditRoute';
 import { giftListRouteLoader } from './services/routerService.ts';
 
 const router = createBrowserRouter([
-  // TODO organise better the error route and children as to not repeat too much code
   {
     path: '/',
     element: <App />,
