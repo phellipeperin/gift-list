@@ -4,6 +4,7 @@ import { Input, Button, Stack } from '@mui/joy';
 import store from '../../store';
 import { ValidationResult } from '../../models/Validation';
 import { createUserEmailPassword, signInEmailPassword } from '../../services/firebase/firebaseAuthService';
+import { validateEmail, validatePassword, validatePasswordConfirmation } from '../../services/validation/formValidationsService';
 import { setWarningMessage } from '../../stores/feedbackStore';
 
 function LoginForm() {
@@ -12,22 +13,21 @@ function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-   // these properties could potentially be brought somewhere more generic for re-use in case it's needed
-  const passwordMinLength = 6;
-  const emailRegexValidation = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const isFormValid = (): ValidationResult => {
-    if (!email || !password || (signUpMode && !passwordConfirmation)) {
-      return { isValid: false, message: 'Please fill in all the form fields' };
+    const emailValidation = validateEmail(email);
+    if (!emailValidation.isValid) {
+      return emailValidation;
     }
-    if (!email.toLowerCase().match(emailRegexValidation)) {
-      return { isValid: false, message: 'Please fill in a valid email' };
+    const passwordValidation = validatePassword(password);
+    if (!passwordValidation.isValid) {
+      return passwordValidation;
     }
-    if (password.trim().length < passwordMinLength) {
-      return { isValid: false, message: `Password should be at least ${passwordMinLength} characters long` };
-    }
-    if (signUpMode && password.trim() !== passwordConfirmation.trim()) {
-      return { isValid: false, message: 'Password and confirmation don\'t match' };
+    if (signUpMode) {
+      const confirmationValidation = validatePasswordConfirmation(password, passwordConfirmation);
+      if (!confirmationValidation.isValid) {
+        return confirmationValidation;
+      }
     }
 
     return { isValid: true };
@@ -48,12 +48,7 @@ function LoginForm() {
   };
 
   useEffect(() => {
-    // TODO: validate fields better
-    let enabled = !!email && !!password;
-    if (signUpMode) {
-      enabled = enabled && !!passwordConfirmation;
-    }
-    setSubmitButtonEnabled(enabled);
+    setSubmitButtonEnabled(isFormValid().isValid);
   }, [email, password, passwordConfirmation, signUpMode]);
 
   return (
