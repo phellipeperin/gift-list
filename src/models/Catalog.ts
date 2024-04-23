@@ -1,6 +1,6 @@
 import Section from './Section';
 
-interface GiftList {
+interface Catalog {
   id: string;
   name: string;
   description: string;
@@ -8,4 +8,4 @@ interface GiftList {
   sections: Array<Section>;
 }
 
-export default GiftList;
+export default Catalog;

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import FeedbackMessage, { MessageType } from '../models/FeedbackMessage'; 
+import FeedbackMessage, { MessageType } from '../models/FeedbackMessage';
 
 const initialState: FeedbackMessage = {
   message: '',

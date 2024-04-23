@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Snackbar, ColorPaletteProp } from '@mui/joy';
 
 import { StoreRootState } from '../../store';
-import { MessageType } from '../../models/FeedbackMessage'; 
+import { MessageType } from '../../models/FeedbackMessage';
 import { clearMessage } from '../../stores/feedbackStore';
 
 function FeedbackSnackbar() {
@@ -44,14 +44,14 @@ function FeedbackSnackbar() {
     <Snackbar
       anchorOrigin={{
         vertical: 'bottom',
-        horizontal: 'right'
+        horizontal: 'right',
       }}
       variant="soft"
       color={getColorByMessageType(type)}
       open={open}
       onClose={handleClose}
     >
-      { message }
+      {message}
     </Snackbar>
   );
 }

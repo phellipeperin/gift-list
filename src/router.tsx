@@ -3,10 +3,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from './app';
 
 import LoginRoute from './routes/LoginRoute';
-import GiftListRoute from './routes/GiftListRoute';
 import ErrorRoute from './routes/ErrorRoute';
-import GiftListItemRoute from './routes/GiftListItemRoute';
-import GiftListItemEditRoute from './routes/GiftListItemEditRoute';
+import CatalogListRoute from './routes/CatalogListRoute.tsx';
+import CatalogItemRoute from './routes/CatalogItemRoute.tsx';
+import CatalogItemEditRoute from './routes/CatalogItemEditRoute.tsx';
 
 import { giftListRouteLoader } from './services/routerService.ts';
 
@@ -22,19 +22,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/list',
-        element: <GiftListRoute />,
+        element: <CatalogListRoute />,
       },
       {
         path: '/list/:id',
-        element: <GiftListItemRoute />,
+        element: <CatalogItemRoute />,
         loader: giftListRouteLoader,
       },
       {
         path: '/list/edit/:id',
-        element: <GiftListItemEditRoute />,
+        element: <CatalogItemEditRoute />,
         loader: giftListRouteLoader,
       },
-    ]
+    ],
   },
 ]);
 
