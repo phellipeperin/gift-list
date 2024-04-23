@@ -1,9 +1,17 @@
 import { Stack, Button } from '@mui/joy';
 
+import { createCatalog } from '../services/entities/catalogService';
+
 import PageTitle from '../components/system/PageTitle';
 import CatalogList from  '../components/catalog/CatalogList';
 
 function CatalogListRoute() {
+  
+  const createNewCatalog = async (): Promise<void> => {
+    console.log('create');
+    createCatalog();
+  };
+
   return (
     <Stack
       spacing={2}
@@ -21,6 +29,7 @@ function CatalogListRoute() {
           fontSize: 16,
           textTransform: 'uppercase',
         }}
+        onClick={() => createNewCatalog()}
       >
         Create a Gift List
       </Button>

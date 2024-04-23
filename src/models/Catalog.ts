@@ -1,7 +1,7 @@
 import Section from './Section';
 
 interface Catalog {
-  id: string;
+  // id: string;
   name: string;
   description: string;
   // TODO: layout! (pre-defined/free/both?)

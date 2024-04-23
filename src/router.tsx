@@ -8,7 +8,10 @@ import CatalogListRoute from './routes/CatalogListRoute.tsx';
 import CatalogItemRoute from './routes/CatalogItemRoute.tsx';
 import CatalogItemEditRoute from './routes/CatalogItemEditRoute.tsx';
 
-import { giftListRouteLoader } from './services/routerService.ts';
+import {
+  catalogListRouteLoader,
+  catalogItemRouteLoader,
+} from './services/routerService.ts';
 
 const router = createBrowserRouter([
   {
@@ -23,16 +26,17 @@ const router = createBrowserRouter([
       {
         path: '/list',
         element: <CatalogListRoute />,
+        loader: catalogListRouteLoader,
       },
       {
-        path: '/list/:id',
+        path: '/list/:userId/:id',
         element: <CatalogItemRoute />,
-        loader: giftListRouteLoader,
+        loader: catalogItemRouteLoader,
       },
       {
         path: '/list/edit/:id',
         element: <CatalogItemEditRoute />,
-        loader: giftListRouteLoader,
+        loader: catalogItemRouteLoader,
       },
     ],
   },

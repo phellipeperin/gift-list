@@ -1,6 +1,11 @@
-import GiftList from '../models/Catalog';
-import { loadGiftList } from './giftListService';
+import Catalog from '../models/Catalog';
 
-export async function giftListRouteLoader({ params }: any): Promise<GiftList> {
-  return loadGiftList(params?.id || '');
+import { loadCatalogListFromCurrentUser, loadCatalog } from './entities/catalogService';
+
+export async function catalogListRouteLoader(): Promise<Array<Catalog>> {
+  return loadCatalogListFromCurrentUser();
+}
+
+export async function catalogItemRouteLoader({ params }: any): Promise<Catalog> {
+  return loadCatalog(params?.id || '', params?.userId || '');
 }
