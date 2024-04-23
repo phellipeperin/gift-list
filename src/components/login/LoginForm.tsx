@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Input, Button, Stack } from '@mui/joy';
 
-import store from '../../store';
 import { ValidationResult } from '../../models/Validation';
 import {
   createUserEmailPassword,
@@ -15,6 +15,7 @@ import {
 import { setWarningMessage } from '../../stores/feedbackStore';
 
 function LoginForm() {
+  const dispatch = useDispatch();
   const [signUpMode, setSignUpMode] = useState(false);
   const [submitButtonEnabled, setSubmitButtonEnabled] = useState(false);
   const [email, setEmail] = useState('');
@@ -46,7 +47,7 @@ function LoginForm() {
   const submit = () => {
     const formValidation = isFormValid();
     if (!formValidation.isValid) {
-      store.dispatch(setWarningMessage(formValidation.message));
+      dispatch(setWarningMessage(formValidation.message));
       return;
     }
 

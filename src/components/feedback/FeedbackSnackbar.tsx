@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Snackbar, ColorPaletteProp } from '@mui/joy';
 
-import store, { StoreRootState } from '../../store';
+import { StoreRootState } from '../../store';
 import { MessageType } from '../../models/FeedbackMessage'; 
 import { clearMessage } from '../../stores/feedbackStore';
 
 function FeedbackSnackbar() {
   const defaultTimeSnackbar = 5000;
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const { message, type } = useSelector((state: StoreRootState) => ({
     message: state.feedback.message,
@@ -29,7 +30,7 @@ function FeedbackSnackbar() {
 
   const handleClose = () => {
     setOpen(false);
-    store.dispatch(clearMessage());
+    dispatch(clearMessage());
   };
 
   useEffect(() => {
