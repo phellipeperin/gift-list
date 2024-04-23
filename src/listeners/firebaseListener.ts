@@ -15,7 +15,7 @@ const startListener = (redirect: any) => {
           photoURL: user.photoURL,
         }),
       );
-      redirect('/list');
+      redirect('/catalog');
     } else {
       store.dispatch(clearUser());
       // TODO: some pages are public and should not be affected by this redirect!

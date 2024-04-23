@@ -4,7 +4,7 @@ interface Catalog {
   // id: string;
   name: string;
   description: string;
-  // TODO: layout! (pre-defined/free/both?)
+  userId: string;
   sections: Array<Section>;
 }
 

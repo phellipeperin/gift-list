@@ -1,1 +1,1 @@
-export const CATALOG_COLLECTION_NAME = 'catalogs';
+export const CATALOG_COLLECTION_NAME = 'catalog';

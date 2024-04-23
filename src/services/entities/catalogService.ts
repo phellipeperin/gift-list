@@ -4,35 +4,32 @@ import { CATALOG_COLLECTION_NAME } from '../../constants/firebaseConstants';
 import { addDocument, getDocument } from '../firebase/firebaseDatabaseService';
 
 // Inner Functions
-const getCatalogPathFromUser = (userId: string): string => {
-  return `${CATALOG_COLLECTION_NAME}/${userId}`;
-};
-
-const getDefaultCatalog = (): Catalog => ({
+const getDefaultCatalog = (userId: string): Catalog => ({
   name: 'My New Gift List',
   description: 'Tell us a bit what is this list about?',
+  userId,
   sections: [],
 });
 
-
 // Exported Functions
-export const loadCatalog = async (id: string, userId: string): Promise<Catalog> => {
-  // If no userId, use the current user
-  const finalUserId = userId || store.getState().user.id;
-  console.log(id, finalUserId);
-  return {} as Catalog; // TODO
+export const loadCatalog = async (id: string): Promise<Catalog | null> => {
+  const doc = await getDocument(`${CATALOG_COLLECTION_NAME}/${id}`);
+  if (doc.data) {
+    return doc.data as Catalog;
+  }
+  return null;
 };
 
 export const loadCatalogListFromCurrentUser = async (): Promise<Array<Catalog>> => {
   const userId = store.getState().user.id;
-  const list = await getDocument(getCatalogPathFromUser(userId));
-  console.log(list);
+  if (userId) {
+    // TODO
+  }
   return [];
 };
 
-export const createCatalog = async (): Promise<Catalog> => {
+export const createCatalog = async (): Promise<string> => {
   const userId = store.getState().user.id;
-  const data = await addDocument(getCatalogPathFromUser(userId), getDefaultCatalog());
-  console.log(data);
-  return getDefaultCatalog();
+  const docRef = await addDocument(CATALOG_COLLECTION_NAME, getDefaultCatalog(userId));
+  return docRef.id;
 };

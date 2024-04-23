@@ -24,17 +24,17 @@ const router = createBrowserRouter([
         element: <LoginRoute />,
       },
       {
-        path: '/list',
+        path: '/catalog',
         element: <CatalogListRoute />,
         loader: catalogListRouteLoader,
       },
       {
-        path: '/list/:userId/:id',
+        path: '/catalog/:id',
         element: <CatalogItemRoute />,
         loader: catalogItemRouteLoader,
       },
       {
-        path: '/list/edit/:id',
+        path: '/catalog/edit/:id',
         element: <CatalogItemEditRoute />,
         loader: catalogItemRouteLoader,
       },

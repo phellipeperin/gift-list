@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Stack, Button } from '@mui/joy';
 
 import { createCatalog } from '../services/entities/catalogService';
@@ -6,10 +7,11 @@ import PageTitle from '../components/system/PageTitle';
 import CatalogList from  '../components/catalog/CatalogList';
 
 function CatalogListRoute() {
+  const navigate = useNavigate();
   
   const createNewCatalog = async (): Promise<void> => {
-    console.log('create');
-    createCatalog();
+    const catalogId = await createCatalog();
+    navigate(`/catalog/edit/${catalogId}`);
   };
 
   return (
